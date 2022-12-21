@@ -48,8 +48,6 @@ hgcc -o main easy_shooting.c
 
 Handy Graphicの仕様上、Windows, Linux環境下では動作しません
 
-M1 Macでは動作が不安定になります
-
 # Author
 
 * TanabeTakumi

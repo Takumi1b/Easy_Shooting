@@ -12,6 +12,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include <handy.h>
+#include <unistd.h>
 
 #define WINDOWSIZE 640
 #define RIGHT_LIMIT 590
@@ -235,6 +236,8 @@ void game_speed();
 void draw_high_score();
 void high_score_write();
 
+void wait_fanc();
+
 int gamecount;
 int enemy_timer = 199;
 int block_enemy_timer = 307;
@@ -335,6 +338,7 @@ int main(){
             draw_text_board(game_layer);
 
             timer();
+            
         
         
             if(event != NULL){
@@ -451,6 +455,8 @@ int main(){
             high_score_write();
             break;
         }
+
+        wait_fanc();
         
     }
     HgCloseAll();
@@ -2181,4 +2187,14 @@ void draw_end(int layers){
         HgWText(layers, 280, 180, "TITLE");
         HgWText(layers, 280, 160, "EXIT");
     }
+}
+
+
+void wait_fanc(){
+    int term;
+    static int t=0;
+    term = time(NULL)-t;
+    if(16-term>0) usleep((16-term)*1000);
+    t=time(NULL);
+    return;
 }
